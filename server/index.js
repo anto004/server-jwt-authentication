@@ -21,7 +21,7 @@ app.use(morgan("combined"));
 app.use(bodyParser.json({ type: "*/*" }));
 router(app);
 
-//Server Setup
+// Server Setup
 // Use whichever is available
 const port = process.env.PORT || 3090;
 const server = http.createServer(app);
