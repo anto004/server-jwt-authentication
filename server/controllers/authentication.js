@@ -1,4 +1,20 @@
 const User = require("../models/user");
+const jwt = require("jwt-simple");
+const config = require("../config");
+
+// Generate Token
+// JWT has 3 parts (Header Payload SecretKey)
+// Below we encoded without the header
+function tokenForUser(user) {
+	const timestamp = new Date().getTime();
+	const payload = {
+		sub: user.email,
+		iat: timestamp,
+	};
+	const secret = config.secret;
+
+	return jwt.encode(payload, secret);
+}
 
 exports.signup = function (req, resp, next) {
 	const email = req.body.email;
@@ -32,8 +48,8 @@ exports.signup = function (req, resp, next) {
 				return next(err);
 			}
 
-			// Respond to request indicating the User was created
-			resp.json({ Success: true });
+			// Respond to request with JWT
+			resp.json({ token: tokenForUser(user) });
 		});
 	});
 
