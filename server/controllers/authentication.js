@@ -8,7 +8,7 @@ const config = require("../config");
 function tokenForUser(user) {
 	const timestamp = new Date().getTime();
 	const payload = {
-		sub: user.email,
+		sub: user.id,
 		iat: timestamp,
 	};
 	const secret = config.secret;
