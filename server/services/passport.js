@@ -13,7 +13,7 @@ const localOptions = {
 	passwordField: "password",
 };
 
-// Local Strategy to verify password
+// Local Strategy("local") to verify password
 const localStrategy = new LocalStrategy(localOptions, function (
 	email,
 	password,
@@ -42,15 +42,23 @@ const localStrategy = new LocalStrategy(localOptions, function (
 	});
 });
 
-// Setup options for JWT Strategy
+// Setup options for JWT Strategy ("jwt")
 const jwtOptions = {
 	jwtFromRequest: ExtractJwT.fromHeader("authorization"),
 	secretOrKey: config.secret,
 };
 
 // JwTStrategy to Verify Token
-// payload is passed after Jwt encoding during authentication
+// payload is passed after Jwt encoding during signup
 // payload {sub: id, iat: timestamp}
+/*
+	// Token is converted to payload with id
+	// JwT uses something like this to provide a payload with id
+	verify(token, secretOrKey, function (err, payload) {
+		if(err) {return done(err)}
+		return payload
+	})
+*/
 const jwtLogin = new JwTStrategy(jwtOptions, function (payload, done) {
 	User.findById(payload.sub, function (err, user) {
 		if (err) {
