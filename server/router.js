@@ -13,9 +13,7 @@ module.exports = function (app) {
 	// Define a route a user can visit
 	app.post("/signup", Authentication.signup);
 
-	app.post("/login", loginAuth, function (req, res) {
-		res.send({ mesg: "Authentication success" });
-	});
+	app.post("/login", loginAuth, Authentication.signin);
 
 	app.get("/", requireAuth, function (req, resp, next) {
 		resp.send({ mesg: "hello" });

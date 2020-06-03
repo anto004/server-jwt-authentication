@@ -35,6 +35,8 @@ const localStrategy = new LocalStrategy(localOptions, function (
 				return done(null, false);
 			}
 
+			// Pass user to req
+			// Access it using req.user
 			return done(null, user);
 		});
 	});

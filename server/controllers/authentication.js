@@ -15,6 +15,14 @@ function tokenForUser(user) {
 	return jwt.encode(payload, secret);
 }
 
+// Provide a token for user
+exports.signin = function (req, res, next) {
+	// User has already had their email and password Authenticated
+	// UsingLocalStrategy
+
+	res.send({ token: tokenForUser(req.user) });
+};
+
 exports.signup = function (req, resp, next) {
 	const email = req.body.email;
 	const password = req.body.password;
