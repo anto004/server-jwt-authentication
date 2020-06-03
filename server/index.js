@@ -6,6 +6,9 @@ const morgan = require("morgan");
 const app = express();
 const router = require("./router");
 const mongoose = require("mongoose");
+const passport = require("passport");
+
+// TODO: Add linting and prettier
 
 // DB Setup
 mongoose.connect("mongodb://localhost/auth", {
@@ -17,8 +20,13 @@ mongoose.connect("mongodb://localhost/auth", {
 // morgan is for logging incoming requests
 app.use(morgan("combined"));
 
-// body-parser parse incoming request to json
+// Parse incoming http request to json
 app.use(bodyParser.json({ type: "*/*" }));
+
+// Add middleware
+app.use(passport.initialize());
+
+// Route Incoming requests
 router(app);
 
 // Server Setup

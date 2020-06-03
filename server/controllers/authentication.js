@@ -4,12 +4,11 @@ const config = require("../config");
 
 // Generate Token
 // JWT has 3 parts (Header Payload SecretKey)
-// Below we encoded without the header
+// Encoded without header
 function tokenForUser(user) {
-	const timestamp = new Date().getTime();
 	const payload = {
 		sub: user.id,
-		iat: timestamp,
+		iat: new Date().getTime(),
 	};
 	const secret = config.secret;
 
@@ -52,6 +51,4 @@ exports.signup = function (req, resp, next) {
 			resp.json({ token: tokenForUser(user) });
 		});
 	});
-
-	// Respond to
 };
