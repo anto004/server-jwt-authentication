@@ -29,6 +29,27 @@ or
 ```
    { secret: "your_secret_key"}
 ```
+
+-   API:
+
+    -   /signup
+
+        -   Post Request
+        -   Expects an email and password parameter
+        -   Returns token
+
+    -   /login
+
+        -   Post Request
+        -   Expects an email and password parameter
+        -   Return token
+
+    -   /
+
+        -   Get Request
+        -   Expects an email and password parameter and
+        -   Header authorization key with token
+    
 ### Application flow
 
 ![app_diagram](/server/diagrams/app.png)
