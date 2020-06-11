@@ -7,6 +7,7 @@ const app = express();
 const router = require("./router");
 const mongoose = require("mongoose");
 const passport = require("passport");
+const cors = require("cors");
 
 // TODO: Add linting and prettier
 
@@ -19,6 +20,10 @@ mongoose.connect("mongodb://localhost/auth", {
 //App Setup
 // morgan is for logging incoming requests
 app.use(morgan("combined"));
+
+//CORS
+// Accept request from anywhere
+app.use(cors());
 
 // Parse incoming http request to json
 app.use(bodyParser.json({ type: "*/*" }));
