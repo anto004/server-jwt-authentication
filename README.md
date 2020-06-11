@@ -32,22 +32,22 @@ or
 
 -   API:
 
-    -   signup
+    -   /signup
 
         -   Post Request
-        -   Expects an email and password
+        -   Expects an email and password parameter
         -   Returns token
 
-    -   login
+    -   /login
 
         -   Post Request
-        -   Expects an email and password
+        -   Expects an email and password parameter
         -   Return token
 
     -   /
 
         -   Get Request
-        -   Expects an email and password and
+        -   Expects an email and password parameter and
         -   Header authorization key with token
 
 ### Application flow
